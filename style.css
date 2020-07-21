@@ -15,15 +15,16 @@ body {
 }
 
 #message {
-	display: none;
+    display: none;
+    padding: 10px;
 	background-color: lawngreen;
 	color: black;
 }
 
 
-p {
+/* p {
 	margin: 5px 0;
-}
+} */
 
 h2 {
 	margin: 10px 0 20px;
@@ -52,6 +53,7 @@ input[type=checkbox] {
 	max-width: 100%;
 }
 
+/* Area that relects the Password */
 .result-container {	
     background-color: #87cefa;
     display: flex;
@@ -90,12 +92,14 @@ input[type=checkbox] {
 	background-color: greenyellow
 }
 
+/* Clipboard button */
 #clipboard{
 	border-style: outset;
 	border-radius: 4px;
 
 }
 
+/* Password Generate button */
 .btn-large {
 	display: block;
 	width: 100%;

@@ -10,21 +10,21 @@ const symbolsEl = document.getElementById("symbols");
 const generateEl = document.getElementById("generate");
 const clipboard = document.getElementById("clipboard");
 
-console.log("generateEl: ", generateEl); //remove
-console.log("clipboard: ", clipboard);  //remove
-
 // Define the Objects for the random password selection that will be 
 // called into an Array called typesArr in order to generate the random password
 const randomFunc = {
 	lower: getRandomLower, 
 	upper: getRandomUpper,
 	number: getRandomNumber,
-	symbol: getRandomSymbol
+	symbol: getRandomSymbol                                                                                                    
 };
-console.log(randomFunc);  //remove
 
+// Copy the Password to the Clipboard
 // This is the clipboard Event for when we click the clipboard
-//  it will advised that the password was copied to the clipboard
+// it will copy the generated password to the clipboard
+//  below is the link used to get the statements to create the copy to clipboard
+//  https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
+
 clipboard.addEventListener("click", () => {
 	const textarea = document.createElement("textarea");
 	const password = resultEl.innerText;
@@ -50,23 +50,17 @@ clipboard.addEventListener("click", () => {
 generateEl.addEventListener("click", () => {
 	const length = +lengthEl.value;
 
-	console.log(length); //Remove
-	console.log(typeof length); //Remove
-
 	const hasLower = lowercaseEl.checked;  //lower is checked
 	const hasUpper = uppercaseEl.checked;  //upper is checked
 	const hasNumber = numbersEl.checked;   //numbers is checked 	
 	const hasSymbol = symbolsEl.checked;   //symbol is checked
-	
-	console.log(hasLower, hasUpper, hasNumber, hasSymbol);
-
+		
 	let eMsg = document.getElementById("message");
 
-	// if (!hasLower && !hasUpper && !hasNumber && !hasSymbol) {
 	if (!hasLower || !hasUpper || !hasNumber || !hasSymbol) {
 		eMsg.style.display = "block";
 		return ' ';
-		console.log(eMsg); //Remove
+		
 	} else{
 		eMsg.style.display = "none"; 		
 		resultEl.innerText = generatePassword(
@@ -85,14 +79,12 @@ function generatePassword(lower, upper, number, symbol, length) {
 
 	// Counts the number of checked items in types count, true or false
 	const typesCount = lower + upper + number + symbol;
-	  console.log('typesCount: ', typesCount);
-
-	//create an array based on the defined Objects which if the boxes are checke
-    //  if check, it returns a True, if not a false
-	const typesArr = [ randomFunc.lower, randomFunc.upper, randomFunc.number, randomFunc.symbol];
-
-	console.log(typesArr);
-	
+	 
+    //create an array based on the defined Objects randonFunc. Because True and False are Boolean
+    // this is th eonly way we can count the number of Trues and False based on the boxes checked.
+    // All four boxes should be checked.
+    const typesArr = [ randomFunc.lower, randomFunc.upper, randomFunc.number, randomFunc.symbol];
+    
 	//generate the password by looping over the length
 	// if j = to the length of the password, increment by the number of checked 
 	// boxes (typesCount) which counts trues or false according to how many boxes are checked
@@ -107,69 +99,8 @@ function generatePassword(lower, upper, number, symbol, length) {
 		}));
 	}
 
-	// for(let j = 0; j < length; j += typesCount) {
-	// 	typesArr.forEach(type => {
-	// 	 		const funcName = Object.keys(type)[0];
-		
-	// 	 		console.log('funcName: ', funcName);
-	// 			 generatedPassword += randomFunc[funcName]();
-				 	
-	// 	 	});
-		
-	// 	 	}
-
-	console.log(generatedPassword);
-
 	return generatedPassword;
 }
-
-//****************************************** */
-// Generate password function 
-// function generatePassword(lower, upper, number, symbol, length) {
-// 	let generatedPassword = "";
-
-	// Counts the number of checked items in types count, true or false
-// const typesCount = lower + upper + number + symbol;
-//   console.log('typesCount: ', typesCount);
-
-  //create an array based on if the boxes are checke
-  //  if check, it returns a True, if not a false
-  // we don't want to filter out the false
-// const typesArr = [{ lower }, { upper }, { number }, { symbol }].filter
-// (
-//   item => Object.values (item) [0]
-// );
-
-
-// console.log('typesArr: ',typesArr);
-
-// if none of the boxes are checked, return an empty string
-// don't even generate the epassword
-// if(typesCount ===0) {
-// 	return ' ';
-// }
-
-//generate the password by looping over the length
-// if i = to the length of the password, increment by the number of checked 
-// boxes (typesCount) which counts trues or false according to how many boxes are checked
-// loop thru the array forEach to get the type, lower, upper, number, symbol
-// to do this we need to call the Objects keys we created above called randomFunc
-// and pass the array type into object type
-// generate the password by appending unto it the upper lower etc
-// for(let i = 0; i < length; i += typesCount) {
-// 	typesArr.forEach(type => {
-// 		const funcName = Object.keys(type)[0];
-
-// 		console.log('funcName: ', FuncName);
-// 		generatedPassword += randomFunc[funcName]();	
-// 	});
-
-// 	}
-// 	console.log(generatedPassword)
-// 	const finalPassword = generatedPassword.slice(0, length);
-// }
-
-//**********************************************8 */
 
 //  Generator Functions to get the codes for the character sets - http://www.net-comber.com/charset.html
 // math.random Math.floor(Math.random()  * 26) + 97); will get the length/span of the alphabets
@@ -193,7 +124,7 @@ function getRandomNumber() {
 // we define the string of symbols and then use a return function with math.floor * the symbols length 
 // to get a return of random symbols
 function getRandomSymbol() {
-	const symbols = "!@#$%^&*(){}[]=<>/,.";
+	const symbols = "!@#$%^&*)(}{][=<>/,.";
 	return symbols[Math.floor(Math.random() * symbols.length)];
 }
 
