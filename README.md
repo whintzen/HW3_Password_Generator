@@ -38,7 +38,7 @@ Images:
 I have included pdf images of the interface in several steps of execution
 
 Deployed Link:
-https://tmbx9482.github.io/Project1_RUTSchool/index.html
+https://whintzen.github.io/HW3_Password_Generator/index.html
 
 
  
